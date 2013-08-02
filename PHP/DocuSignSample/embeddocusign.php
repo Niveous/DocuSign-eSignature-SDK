@@ -22,6 +22,10 @@
 //========================================================================
 // Includes
 //========================================================================
+
+// initialization code required to be run on every page load.
+include_once 'include/init.php';
+
 include_once 'include/session.php'; // initializes session and provides
 include 'include/utils.php';
 

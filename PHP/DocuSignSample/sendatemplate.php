@@ -160,14 +160,17 @@ function loadTemplates() {
         //echo "<option value='0'>No Templates Available</option>";
     }
 
+    // The API call seems to return "null" if there are no templates.
     if($templates == null) {
         echo "<option value='0'>No Templates Available</option>";
+        return false;
     } else {
         foreach ($templates as $template) {
             echo '<option value="' . $template->TemplateID . '">' .
                 $template->Name . ' - ' . $template->TemplateID . "</option>\n";
             // echo $template->TemplateID . " " . $template->Name . "<br />" . "\n";
         }
+        return true;
     }
 }
 
@@ -330,13 +333,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				        Select a Template
 				        <br />
 				        <select id="TemplateTable" name="TemplateTable" >
-				        	<?php loadTemplates(); ?>
+				        	<?php $success = loadTemplates(); ?>
 				        </select>
 				    </div>
 				    <br />
-				    <div class="submitForm">
-				    	<input class="docusignbutton orange" type="submit" value="Continue with Template"/>
-				    </div>
+					<?php if($success) { ?>
+					    <div class="submitForm">
+						<input class="docusignbutton orange" type="submit" value="Continue with Template"/>
+					    </div>
+					<?php } ?>
 				  </div>
 			    
 	    	<?php } else { ?>

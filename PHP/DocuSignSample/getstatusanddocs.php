@@ -48,30 +48,30 @@ function createStatusTable() {
         
         if (isset($statuses)) {
         	//pr($statuses);
-        	?> <ul class=""> <?
+        	?> <ul class=""> <?php
 	            foreach ($statuses->EnvelopeStatuses->EnvelopeStatus as $status) {
 		           ?>
 		           		<li>
-		           			<span><u><?= $status->Subject ?></u> 
-		           				[<?= $status->Status ?>] - 
-		           				<?= $status->EnvelopeID; ?> 
-		           				<a href="getstatusofenvelope.php?envelopeid=<?= $status->EnvelopeID; ?>" target="_blank" title="Click to see a RequestStatus SOAP return for this Envelope">View RequestStatus</a>
-		           				&nbsp;&nbsp;<a href="getpdf.php?envelopeid=<?= $status->EnvelopeID; ?>" target="_blank" title="Click to download PDF for this Envelope">Download PDF</a></span>
+		           			<span><u><?php echo $status->Subject ?></u> 
+		           				[<?php echo $status->Status ?>] - 
+		           				<?php echo $status->EnvelopeID; ?> 
+		           				<a href="getstatusofenvelope.php?envelopeid=<?php echo $status->EnvelopeID; ?>" target="_blank" title="Click to see a RequestStatus SOAP return for this Envelope">View RequestStatus</a>
+		           				&nbsp;&nbsp;<a href="getpdf.php?envelopeid=<?php echo $status->EnvelopeID; ?>" target="_blank" title="Click to download PDF for this Envelope">Download PDF</a></span>
 		           			<ul>
 		           				<!-- Recipients -->
 				           		<li>
-				           			<span>Recipients (<?= count($status->RecipientStatuses->RecipientStatus); ?>)</span>
-				           			<ul id="<?= $status->EnvelopeID; ?>">
+				           			<span>Recipients (<?php echo count($status->RecipientStatuses->RecipientStatus); ?>)</span>
+				           			<ul id="<?php echo $status->EnvelopeID; ?>">
 				           				
-				           				<? foreach($status->RecipientStatuses->RecipientStatus as $rcpStatus){ ?>
+				           				<?php foreach($status->RecipientStatuses->RecipientStatus as $rcpStatus){ ?>
 				           							<li>
 				           								<!-- Recipient Name and Start Signing -->
-				           								<?
+				           								<?php
 				           									echo $rcpStatus->UserName;
 				           								?> 
-				           								<a href="embeddocusign.php?from_gsad=1&envelopeID=<?= $status->EnvelopeID; ?>&clientID=<?= $rcpStatus->ClientUserId ?>">Start Signing</a>
+				           								<a href="embeddocusign.php?from_gsad=1&envelopeID=<?php echo $status->EnvelopeID; ?>&clientID=<?php echo $rcpStatus->ClientUserId ?>">Start Signing</a>
 				           							</li>
-				           				<? } ?>
+				           				<?php } ?>
 				           				
 				           			</ul>
 				           		</li>
@@ -79,21 +79,21 @@ function createStatusTable() {
 				           		
 		           				<!-- Documents -->
 		           				<li>
-		           					<span>Documents (<?= count($status->DocumentStatuses->DocumentStatus); ?>)</span>
+		           					<span>Documents (<?php echo count($status->DocumentStatuses->DocumentStatus); ?>)</span>
 		           					<ul>
-		           						<? foreach($status->DocumentStatuses->DocumentStatus as $docStatus){ ?>
+		           						<?php foreach($status->DocumentStatuses->DocumentStatus as $docStatus){ ?>
 				           						<li>
-				           							<?= $docStatus->Name; ?>
+				           							<?php echo $docStatus->Name; ?>
 				           						</li>
-				           				<? } ?>
+				           				<?php } ?>
 		           					</ul>
 		           				</li>
 				           		
 				           	</ul>
 		           		</li>
-		           <?
+		           <?php
 	            };
-        	?> </ul> <?
+        	?> </ul> <?php
         }
     } else {
       // No Envelopes created yet

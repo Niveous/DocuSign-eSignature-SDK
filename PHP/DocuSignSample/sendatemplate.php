@@ -316,7 +316,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	    <form id="SendTemplateForm" enctype="multipart/form_data" method="post">
 	    	
 	    	<!-- Choose the Template before showing other form fields (autopopulate Roles) -->
-	    	<?
+	    	<?php
 	    		if(!$displayForms){
 	    	?>
 	    		
@@ -335,13 +335,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 				    </div>
 				  </div>
 			    
-	    	<? } else { ?>
+	    	<?php } else { ?>
 		    	
 		    	<br />
 		    	
 		    	<div>
 		    		Template Chosen: 
-		    		<strong><? echo $templateDetails->RequestTemplateResult->EnvelopeTemplateDefinition->Name; ?></strong>
+		    		<strong><?php echo $templateDetails->RequestTemplateResult->EnvelopeTemplateDefinition->Name; ?></strong>
 		    	</div>
 		    	
 		    	<br />
@@ -376,10 +376,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		              </th>
 		          </tr>
 		          
-		          <? foreach($templateDetails->RequestTemplateResult->Envelope->Recipients->Recipient as $recipient): ?>
+		          <?php foreach($templateDetails->RequestTemplateResult->Envelope->Recipients->Recipient as $recipient): ?>
 			          <tr id="Role1">
 			          	<td>
-			          		<input type="text" name="RoleName[1]" id="txtRow1" value="<? echo $recipient->RoleName ?>">
+			          		<input type="text" name="RoleName[1]" id="txtRow1" value="<?php echo $recipient->RoleName ?>">
 			          	</td>
 			          	<td>
 			          		<input type="text" name="Name[1]" id="txtRow1">
@@ -390,11 +390,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			          	<td>
 			          		<select id="RoleSecurity1" name="RoleSecurity[1]" onchange="EnableDisableInput(1,'RoleSecurity');">
 			          			<option value="None">None</option>
-			          			<option value="IDCheck" <? echo (!empty($recipient->requireIDLookup) ? '"selected"' : ''); ?>>ID Check</option>
-			          			<option value="AccessCode" <? echo (!empty($recipient->AccessCode) ? '"selected"' : ''); ?>>Access Code:</option>
-			          			<option value="PhoneAuthentication" <? echo (!empty($recipient->PhoneAuthentication) ? '"selected"' : ''); ?>>Phone Authentication</option>
+			          			<option value="IDCheck" <?php echo (!empty($recipient->requireIDLookup) ? '"selected"' : ''); ?>>ID Check</option>
+			          			<option value="AccessCode" <?php echo (!empty($recipient->AccessCode) ? '"selected"' : ''); ?>>Access Code:</option>
+			          			<option value="PhoneAuthentication" <?php echo (!empty($recipient->PhoneAuthentication) ? '"selected"' : ''); ?>>Phone Authentication</option>
 			          		</select>
-			          		<input type="text" name="RoleSecuritySetting[1]" id="RoleSecuritySetting1" value="<? echo (!empty($recipient->AccessCode) ? $recipient->AccessCode : ''); ?>" style="display:none;">
+			          		<input type="text" name="RoleSecuritySetting[1]" id="RoleSecuritySetting1" value="<?php echo (!empty($recipient->AccessCode) ? $recipient->AccessCode : ''); ?>" style="display:none;">
 			          	</td>
 			          	<td>
 			          		<ul class="switcher">
@@ -408,7 +408,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			          		</ul>
 			          	</td>
 			          </tr>
-			      	<? endforeach; ?>
+			      	<?php endforeach; ?>
 				    </table>
 				    <!--
 			      <input type="button" onclick="addRoleRowToTable()" value="Add Role"/>
@@ -451,7 +451,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			    </div>
 			    
 			    <!-- Submitting the Envelope Data -->
-			    <input type="hidden" name="TemplateID" value="<? echo $templateDetails->RequestTemplateResult->EnvelopeTemplateDefinition->TemplateID; ?>" />
+			    <input type="hidden" name="TemplateID" value="<?php echo $templateDetails->RequestTemplateResult->EnvelopeTemplateDefinition->TemplateID; ?>" />
 			    <input type="hidden" name="createSampleEnvelope" value="1" />
 			    
 	        <table class="submit">
@@ -465,7 +465,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	            </tr>
 	        </table>
 	        
-	       <? 
+	       <?php 
 	       		} // End of if...else regarding $displayForms
 	       ?>
           

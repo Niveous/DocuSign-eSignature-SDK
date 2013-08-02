@@ -175,7 +175,7 @@ if ($dh = opendir('tmp')) {
 			                <td class="contentCell"><a href="tmp/<?php echo ($post->EnvelopeStatus->EnvelopeID . '.xml')?>">Download</a></td>
 				            </tr>
 			            <?php } ?>
-			            <? if(empty($posts)){ ?>
+			            <?php if(empty($posts)){ ?>
 			            	
 			            	<tr>
 			            		<td colspan="5" style="text-align:center;font-style:italic;">
@@ -183,7 +183,7 @@ if ($dh = opendir('tmp')) {
 			            		</td>
 			            	</tr>
 			            	
-			          	<? } ?>
+			          	<?php } ?>
 			        </tbody>
 		    	</table>
 		    </div>

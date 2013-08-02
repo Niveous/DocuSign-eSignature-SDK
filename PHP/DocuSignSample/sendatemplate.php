@@ -156,14 +156,18 @@ function loadTemplates() {
     } catch (SoapFault $e) {
         $_SESSION["errorMessage"] = $e;
         header("Location: error.php");
-        
+
         //echo "<option value='0'>No Templates Available</option>";
     }
-    
-    foreach ($templates as $template) {
-      echo '<option value="' . $template->TemplateID . '">' .
-          $template->Name . ' - ' . $template->TemplateID . "</option>\n";
-			// echo $template->TemplateID . " " . $template->Name . "<br />" . "\n";
+
+    if($templates == null) {
+        echo "<option value='0'>No Templates Available</option>";
+    } else {
+        foreach ($templates as $template) {
+            echo '<option value="' . $template->TemplateID . '">' .
+                $template->Name . ' - ' . $template->TemplateID . "</option>\n";
+            // echo $template->TemplateID . " " . $template->Name . "<br />" . "\n";
+        }
     }
 }
 
